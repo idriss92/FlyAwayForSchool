@@ -1,0 +1,81 @@
+﻿@model FlyAwayForSchool.Vols
+
+@{
+    ViewBag.Title = "DetailsResultat";
+}
+
+<h2>DetailsResultat</h2>
+
+<div>
+    <h4>Vols correspondant aux critères de choix</h4>
+    <hr />
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Depart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Arrivee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateDepart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateArrivee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Distance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prix)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HeureDepart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HeureArrivee)
+                </th>
+                <th></th>
+            </tr>
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(item => item.Depart)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.Arrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.DateDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.DateArrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.Distance)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.Prix)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.HeureDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item.HeureArrivee)
+                </td>
+
+            </tr>
+
+
+        </table>
+    </div>
+    <div>
+        <input type="submit" value="Reserver" class="btn" />
+    </div>
+</div>
+<p>
+
+    @Html.ActionLink("Nouvelle recherche", "Index")
+</p>

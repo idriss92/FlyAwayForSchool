@@ -1,0 +1,59 @@
+﻿@model FlyAwayForSchool.Vols
+@{
+    List<Vols> liste = new List<Vols>();
+
+    var result = ViewData["recherche"] as IEnumerable<Vols>;
+    foreach (var it in result)
+    //for (int i = 0; i < ViewData["recherche"] ;i++ )
+    {
+
+        liste.Add(it);
+        //var p = it.Depart;
+    }
+}
+
+<h2>Resultat</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Depart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Arrivee)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.HeureDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeureArrivee)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in liste)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(moditem => item.Depart)
+            </td>
+            <td>
+                @Html.DisplayFor(moditem => item.Arrivee)
+            </td>
+
+            <td>
+                @Html.DisplayFor(moditem => item.HeureDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(moditem => item.HeureArrivee)
+            </td>
+            <td>
+                @Html.ActionLink("DetailsResultat", "DetailsResultat", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

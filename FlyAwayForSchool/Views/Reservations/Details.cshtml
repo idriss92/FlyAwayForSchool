@@ -1,0 +1,74 @@
+﻿@model FlyAwayForSchool.Reservations
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Depart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Depart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arrivee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arrivee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartHeure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartHeure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArriveeHeure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArriveeHeure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreAdultes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreAdultes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

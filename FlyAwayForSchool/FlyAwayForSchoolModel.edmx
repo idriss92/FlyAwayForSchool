@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FlyAwayDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AeroportOfficiel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pays" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ville" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Aeroport" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="IdReservation" />
+          </Key>
+          <Property Name="IdReservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateReservation" Type="datetime" Nullable="false" />
+          <Property Name="TarifReservation" Type="int" Nullable="false" />
+          <Property Name="IdVol" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vols">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Depart" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Arrivee" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateDepart" Type="date" Nullable="false" />
+          <Property Name="DateArrivee" Type="date" Nullable="false" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+          <Property Name="Prix" Type="int" Nullable="false" />
+          <Property Name="HeureDepart" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HeureArrivee" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Reservations_Reservations">
+          <End Role="Vols" Type="Self.Vols" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vols">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="IdVol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="InsertOfficielAeroport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pays" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ville" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="aeroport" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="FlyAwayDataModelStoreContainer">
+          <EntitySet Name="AeroportOfficiel" EntityType="Self.AeroportOfficiel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vols" EntityType="Self.Vols" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Reservations_Reservations" Association="Self.FK_Reservations_Reservations">
+            <End Role="Vols" EntitySet="Vols" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FlyAwayDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AeroportOfficiel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pays" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aeroport" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="IdReservation" />
+          </Key>
+          <Property Name="IdReservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateReservation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TarifReservation" Type="Int32" Nullable="false" />
+          <Property Name="IdVol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vols" Relationship="Self.FK_Reservations_Reservations" FromRole="Reservations" ToRole="Vols" />
+        </EntityType>
+        <EntityType Name="Vols">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Depart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Arrivee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateDepart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateArrivee" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <Property Name="Prix" Type="Int32" Nullable="false" />
+          <Property Name="HeureDepart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HeureArrivee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Reservations" FromRole="Vols" ToRole="Reservations" />
+        </EntityType>
+        <Association Name="FK_Reservations_Reservations">
+          <End Role="Vols" Type="Self.Vols" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vols">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="IdVol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlyAwayDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AeroportOfficiel" EntityType="Self.AeroportOfficiel" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" />
+          <EntitySet Name="Vols" EntityType="Self.Vols" />
+          <AssociationSet Name="FK_Reservations_Reservations" Association="Self.FK_Reservations_Reservations">
+            <End Role="Vols" EntitySet="Vols" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <FunctionImport Name="InsertOfficielAeroport">
+            <Parameter Name="pays" Mode="In" Type="String" />
+            <Parameter Name="ville" Mode="In" Type="String" />
+            <Parameter Name="aeroport" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FlyAwayDataModelStoreContainer" CdmEntityContainer="FlyAwayDataEntities">
+          <EntitySetMapping Name="AeroportOfficiel">
+            <EntityTypeMapping TypeName="FlyAwayDataModel.AeroportOfficiel">
+              <MappingFragment StoreEntitySet="AeroportOfficiel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pays" ColumnName="Pays" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Aeroport" ColumnName="Aeroport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="FlyAwayDataModel.Reservations">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
+                <ScalarProperty Name="DateReservation" ColumnName="DateReservation" />
+                <ScalarProperty Name="TarifReservation" ColumnName="TarifReservation" />
+                <ScalarProperty Name="IdVol" ColumnName="IdVol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vols">
+            <EntityTypeMapping TypeName="FlyAwayDataModel.Vols">
+              <MappingFragment StoreEntitySet="Vols">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Depart" ColumnName="Depart" />
+                <ScalarProperty Name="Arrivee" ColumnName="Arrivee" />
+                <ScalarProperty Name="DateDepart" ColumnName="DateDepart" />
+                <ScalarProperty Name="DateArrivee" ColumnName="DateArrivee" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="HeureDepart" ColumnName="HeureDepart" />
+                <ScalarProperty Name="HeureArrivee" ColumnName="HeureArrivee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertOfficielAeroport" FunctionName="FlyAwayDataModel.Store.InsertOfficielAeroport" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

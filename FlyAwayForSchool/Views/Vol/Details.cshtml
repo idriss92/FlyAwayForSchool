@@ -1,0 +1,85 @@
+﻿@model FlyAwayForSchool.Vols
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vols</h4>
+    <hr />
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Depart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Depart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Arrivee)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Arrivee)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateDepart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateDepart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateArrivee)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateArrivee)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Distance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Distance)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prix)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prix)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HeureDepart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeureDepart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HeureArrivee)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeureArrivee)
+            </dd>
+
+        </dl>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

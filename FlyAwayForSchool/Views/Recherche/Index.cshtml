@@ -1,0 +1,109 @@
+﻿@model IEnumerable<FlyAwayForSchool.Vols>
+
+@using FlyAwayForSchool.CodeToUse
+@{
+    ViewBag.Title = "Index";
+    var jsonReader = new UseJson();
+    Dictionary<string, string> tst = new Dictionary<string, string>();
+
+}
+
+@section css {
+    @Styles.Render("~/Content/datepicker")
+    @Styles.Render("~/Content/timepicker")
+    @Styles.Render("~/Content/datetimepicker")
+    @Styles.Render("~/Content/clockpicker")
+}
+
+
+<h2>Index</h2>
+<h3>@ViewBag.Message</h3>
+
+
+
+
+<div class="form-horizontal">
+    <h2>Veuillez chercher un vol</h2>
+    <hr />
+
+
+    @using (Html.BeginForm("Resultat", "Recherche", FormMethod.Get))
+    {
+        <div class="form-horizontal">
+            <h4>Vols</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Départ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("searchString", @jsonReader.Retourne(), "Select", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.ValidationMessage("", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("search", @jsonReader.Retourne(), "Select", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.ValidationMessage("", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Date Départ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("datedepart", "", new { @class = "form-control datepicker " })
+                    @Html.ValidationMessage("", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Date Arrivée", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("datearrivee", "", new { @class = "form-control datepicker " })
+                    @Html.ValidationMessage("", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.Label("Heure Départ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("heuredepart", "", new { @class = "form-control clockpicker" })
+                    @Html.ValidationMessage("", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Chercher" class="btn" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/timepicker")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/clockpicker")
+
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({ format: 'dd/mm/yyyy', startDate: '-3d', autoclose: 'true', clearBtn: true, langage: 'fr' });
+
+            $('.clockpicker').clockpicker({
+                autoclose: true
+            });
+        });
+
+    </script>
+}
+
