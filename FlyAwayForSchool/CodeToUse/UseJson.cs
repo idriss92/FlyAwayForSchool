@@ -10,12 +10,15 @@ using FlyAwayForSchool.Models;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Net;
+using System.Xml.Linq;
 
 namespace FlyAwayForSchool.CodeToUse
 {
 
     public class UseJson
     {
+        static string apiServerKey = "AIzaSyCOZxft33524PDQiaHqJnrfYMxFGKVyitA";
         Dictionary<string, string> rendu;
         private FlyAwayDataEntities entities = new FlyAwayDataEntities();
         public UseJson()
@@ -103,6 +106,23 @@ namespace FlyAwayForSchool.CodeToUse
 
             return listSelect;
 
+        }
+
+
+        public int CalculDistance(string depart, string arrivee)
+        {
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead("https://maps.googleapis.com/maps/api/distancematrix/xml?origins="+depart+"&destinations="+arrivee+"&mode=driving&language=fr-FR&key="+apiServerKey);
+            //?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Vancouver+BC&mode=bicycling&language=fr-FR&key=false");
+            //var depart = new 
+            XDocument doc = XDocument.Load(stream);
+
+            var duration = (string)doc.Root
+                          .Element("row")
+                          .Element("element")
+                          .Element("distance")
+                          .Element("value");
+            return Int32.Parse( duration);
         }
     }
 }

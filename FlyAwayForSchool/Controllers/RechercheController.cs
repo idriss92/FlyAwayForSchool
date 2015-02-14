@@ -9,6 +9,8 @@ namespace FlyAwayForSchool.Controllers
 {
     public class RechercheController : Controller
     {
+        CodeToUse.UseJson ap = new CodeToUse.UseJson();
+        int av;
         FlyAwayDataEntities db = new FlyAwayDataEntities();
         // GET: Recherche
 
@@ -20,6 +22,8 @@ namespace FlyAwayForSchool.Controllers
         [HttpGet]
         public ActionResult Resultat(string searchString, string search, string datedepart, string datearrivee, string heuredepart)
         {
+            av = ap.CalculDistance(searchString, search);
+
             var vol = db.Vols.ToList().AsEnumerable<Vols>();
             // vol = (IEnumerable)vol;
             if (!string.IsNullOrEmpty(searchString) && vol != null)
