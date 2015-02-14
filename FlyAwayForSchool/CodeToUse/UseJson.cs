@@ -117,12 +117,34 @@ namespace FlyAwayForSchool.CodeToUse
             //var depart = new 
             XDocument doc = XDocument.Load(stream);
 
+            //var distance = (string)doc.Root
+            //  .Element("row")
+            //  .Element("element")
+            //  .Element("distance")
+            //  .Element("value");
+
+ 
             var duration = (string)doc.Root
                           .Element("row")
                           .Element("element")
-                          .Element("distance")
+                          .Element("duration")
                           .Element("value");
             return Int32.Parse( duration);
         }
+
+        public int CalculDuree(string depart, string arrivee)
+        {
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead("https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + depart + "&destinations=" + arrivee + "&mode=driving&language=fr-FR&key=" + apiServerKey);
+            XDocument doc = XDocument.Load(stream);
+
+            var distance = (string)doc.Root
+              .Element("row")
+              .Element("element")
+              .Element("distance")
+              .Element("value");
+            return Int32.Parse(distance);
+        }
+
     }
 }
