@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlyAwayForSchool.CodeToUse;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace FlyAwayForSchool.Controllers
 {
     public class VolController : Controller
     {
         private FlyAwayDataEntities db = new FlyAwayDataEntities();
-
+        private UseJson calculate = new UseJson();
         // GET: Vol
         public ActionResult Index()
         {
@@ -46,15 +48,29 @@ namespace FlyAwayForSchool.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Vols vol)
         {
+            Vols copies = new Vols();
             if (ModelState.IsValid)
             {
-                db.Vols.Add(vol);
+                copies.Reservations = vol.Reservations;
+                copies.Id = vol.Id;
+                copies.Depart = vol.Depart;
+                copies.Arrivee = vol.Arrivee;
+                copies.DateDepart = vol.DateDepart;
+                copies.DateArrivee = vol.DateArrivee;
+                copies.Distance = calculate.CalculDistance(vol.Depart, vol.Arrivee);
+                copies.Prix = calculate.CalculDuree(vol.Depart, vol.Arrivee);
+                copies.HeureArrivee = vol.HeureArrivee;
+                copies.HeureDepart = vol.HeureDepart;
+                db.Vols.Add(copies);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(vol);
         }
+
+
+
+
 
         // GET: Vol/Edit/5
         public ActionResult Edit(int? id)

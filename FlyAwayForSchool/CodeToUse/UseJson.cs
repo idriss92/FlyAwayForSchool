@@ -116,20 +116,12 @@ namespace FlyAwayForSchool.CodeToUse
             //?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Vancouver+BC&mode=bicycling&language=fr-FR&key=false");
             //var depart = new 
             XDocument doc = XDocument.Load(stream);
-
-            //var distance = (string)doc.Root
-            //  .Element("row")
-            //  .Element("element")
-            //  .Element("distance")
-            //  .Element("value");
-
- 
-            var duration = (string)doc.Root
+            var distance = (string)doc.Root
                           .Element("row")
                           .Element("element")
-                          .Element("duration")
+                          .Element("distance")
                           .Element("value");
-            return Int32.Parse( duration);
+            return Int32.Parse( distance);
         }
 
         public int CalculDuree(string depart, string arrivee)
@@ -138,12 +130,12 @@ namespace FlyAwayForSchool.CodeToUse
             Stream stream = client.OpenRead("https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + depart + "&destinations=" + arrivee + "&mode=driving&language=fr-FR&key=" + apiServerKey);
             XDocument doc = XDocument.Load(stream);
 
-            var distance = (string)doc.Root
+            var duration = (string)doc.Root
               .Element("row")
               .Element("element")
-              .Element("distance")
+              .Element("duration")
               .Element("value");
-            return Int32.Parse(distance);
+            return Int32.Parse(duration);
         }
 
     }
