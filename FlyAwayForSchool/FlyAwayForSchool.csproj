@@ -216,6 +216,7 @@
     <Compile Include="CodeToUse\UseJson.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\RechercheController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\VolController.cs" />
@@ -237,6 +238,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mail.cs">
+      <DependentUpon>FlyAwayForSchoolModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FlyAwayStoreEntities.cs" />
@@ -440,7 +444,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\Create.cshtml" />
-    <Content Include="Views\Reservations\Edit.cshtml" />
     <Content Include="Views\Vol\Create.cshtml" />
     <Content Include="Views\Vol\Delete.cshtml" />
     <Content Include="Views\Vol\Details.cshtml" />
@@ -452,6 +455,9 @@
     <Content Include="Views\Recherche\ReserverVol.cshtml" />
     <Content Include="Views\Reservations\Details.cshtml" />
     <Content Include="Views\Reservations\Delete.cshtml" />
+    <Content Include="Views\Mail\Index.cshtml" />
+    <Content Include="Views\Reservations\ValiderReservation.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

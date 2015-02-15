@@ -32,6 +32,9 @@
                     @Html.DisplayNameFor(model => model.Prix)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model=>model.Passagers)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.HeureDepart)
                 </th>
                 <th>
@@ -61,6 +64,9 @@
                     @Html.DisplayFor(item => item.Prix)
                 </td>
                 <td>
+                    @Html.DisplayFor(item=>item.Passagers)
+                </td>
+                <td>
                     @Html.DisplayFor(item => item.HeureDepart)
                 </td>
                 <td>
@@ -75,7 +81,7 @@
 
     
 </div>
-}
+
 <p>
 
     @Html.ActionLink("Nouvelle recherche", "Index")

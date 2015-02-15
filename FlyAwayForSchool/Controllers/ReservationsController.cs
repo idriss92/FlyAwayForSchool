@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlyAwayForSchool.CodeToUse;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace FlyAwayForSchool.Controllers
     [Custom.CustomAuthorize(Users="idriss2004@hotmail.com")]
     public class ReservationsController : Controller
     {
+        private UseJson usejson = new UseJson();
         private FlyAwayDataEntities db = new FlyAwayDataEntities();
 
         // GET: Reservations
@@ -83,8 +85,8 @@ namespace FlyAwayForSchool.Controllers
         // POST: Reservations/Edit/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [HttpPost]
+       // [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdReservation,DateReservation,TarifReservation")] Reservations reservation)
         {
             if (ModelState.IsValid)
@@ -121,6 +123,39 @@ namespace FlyAwayForSchool.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        //GET: Reservation/ValiderReservation/5
+        public ActionResult ValiderReservation(int id)
+        {
+            Reservations reservation = db.Reservations.Find(id);
+            if (reservation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(reservation);
+        }
+
+
+        //POST: Reservation/ValiderReservation/5
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult ValiderReservation(Reservations reservation)
+        {
+            //reservation.Validation = true;
+            if (ModelState.IsValid)
+            {
+                db.Entry(reservation).State = EntityState.Modified;
+                db.SaveChanges();
+                usejson.SendMail(reservation);
+                return RedirectToAction("Index", "Reservations");
+            }
+            return View(reservation);
+            
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

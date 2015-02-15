@@ -18,13 +18,16 @@
             @Html.DisplayName("Date Reservation")
         </th>
         <th>
-            @Html.DisplayName("Tarif (*€)")
+            @Html.DisplayName("Tarif (en €)")
         </th>
         <th>
             @Html.DisplayName("Id Vol")
         </th>
         <th>
             @Html.DisplayName("Client mail")
+        </th>
+        <th>
+            @Html.DisplayName("Reservation Validée")
         </th>
         <th></th>
     </tr>
@@ -48,8 +51,12 @@
             <td>
                 @Html.DisplayFor(modelItem =>item.UserMail)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Validation)
+            </td>
  
             <td>
+                @Html.ActionLink("Validation", "ValiderReservation", new { id = item.IdReservation }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |
                 @Html.ActionLink("Details", "Details", new { id = item.IdVol }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.IdReservation })

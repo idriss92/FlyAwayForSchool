@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace FlyAwayForSchool.Controllers
 {
@@ -99,15 +100,17 @@ namespace FlyAwayForSchool.Controllers
             {
                 return HttpNotFound();
             }
-
+            reserver.Passagers = reserver.Passagers - 1;
             official.DateReservation = DateTime.Now;
             official.IdVol = reserver.Id;
-            official.TarifReservation = reserver.Prix;
+            official.TarifReservation = Int16.Parse(reserver.Prix.ToString());
             official.Vols = reserver;
             official.UserMail = User.Identity.GetUserName();
+            official.Validation = false;
+            db.Entry(reserver).State = EntityState.Modified;
             db.Reservations.Add(official);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index", "Recherche");
 
             
         }

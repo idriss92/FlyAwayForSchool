@@ -24,10 +24,11 @@ namespace FlyAwayForSchool
         public string Arrivee { get; set; }
         public System.DateTime DateDepart { get; set; }
         public System.DateTime DateArrivee { get; set; }
-        public int Distance { get; set; }
-        public int Prix { get; set; }
+        public Nullable<int> Distance { get; set; }
+        public Nullable<int> Prix { get; set; }
         public string HeureDepart { get; set; }
         public string HeureArrivee { get; set; }
+        public Nullable<int> Passagers { get; set; }
     
         public virtual ICollection<Reservations> Reservations { get; set; }
     }

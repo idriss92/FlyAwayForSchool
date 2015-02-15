@@ -63,6 +63,7 @@ namespace FlyAwayForSchool.Controllers
                 copies.Prix = calculate.CalculDuree(vol.Depart, vol.Arrivee) /105;
                 copies.HeureArrivee = vol.HeureArrivee;
                 copies.HeureDepart = vol.HeureDepart;
+                copies.Passagers = vol.Passagers;
                 db.Vols.Add(copies);
                 db.SaveChanges();
                 return RedirectToAction("Index");

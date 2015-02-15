@@ -38,6 +38,7 @@
         <AssociationConnector Association="FlyAwayDataModel.FK__aspnet_Pe__UserI__76969D2E" />
         <AssociationConnector Association="FlyAwayDataModel.FK__aspnet_Pr__UserI__4F7CD00D" />
         <AssociationConnector Association="FlyAwayDataModel.aspnet_UsersInRoles" />
+        <EntityTypeShape EntityType="FlyAwayDataModel.Mail" Width="1.5" PointX="12.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

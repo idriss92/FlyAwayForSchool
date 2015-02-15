@@ -12,15 +12,11 @@ namespace FlyAwayForSchool
     using System;
     using System.Collections.Generic;
     
-    public partial class Reservations
+    public partial class Mail
     {
-        public int IdReservation { get; set; }
-        public System.DateTime DateReservation { get; set; }
-        public int TarifReservation { get; set; }
-        public int IdVol { get; set; }
-        public string UserMail { get; set; }
-        public Nullable<bool> Validation { get; set; }
-    
-        public virtual Vols Vols { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
     }
 }

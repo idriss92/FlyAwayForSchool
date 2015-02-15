@@ -49,6 +49,7 @@ namespace FlyAwayForSchool
         public virtual DbSet<vw_aspnet_WebPartState_Paths> vw_aspnet_WebPartState_Paths { get; set; }
         public virtual DbSet<vw_aspnet_WebPartState_Shared> vw_aspnet_WebPartState_Shared { get; set; }
         public virtual DbSet<vw_aspnet_WebPartState_User> vw_aspnet_WebPartState_User { get; set; }
+        public virtual DbSet<Mail> Mail { get; set; }
     
         public virtual int InsertOfficielAeroport(string pays, string ville, string aeroport)
         {

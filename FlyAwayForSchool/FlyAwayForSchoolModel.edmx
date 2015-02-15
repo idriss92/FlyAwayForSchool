@@ -145,6 +145,19 @@
           <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
           <Property Name="Details" Type="ntext" />
         </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'FlyAwayData.dbo.Mail' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="From" />
+            <PropertyRef Name="To" />
+            <PropertyRef Name="Body" />
+          </Key>
+          <Property Name="From" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="To" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Reservations">
           <Key>
             <PropertyRef Name="IdReservation" />
@@ -154,6 +167,7 @@
           <Property Name="TarifReservation" Type="int" Nullable="false" />
           <Property Name="IdVol" Type="int" Nullable="false" />
           <Property Name="UserMail" Type="nvarchar(max)" />
+          <Property Name="Validation" Type="bit" />
         </EntityType>
         <EntityType Name="Vols">
           <Key>
@@ -168,6 +182,7 @@
           <Property Name="Prix" Type="int" />
           <Property Name="HeureDepart" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="HeureArrivee" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passagers" Type="int" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_Applications' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -813,6 +828,14 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vols" EntityType="Self.Vols" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mail" EntityType="Self.Mail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Mail].[From] AS [From], 
+    [Mail].[To] AS [To], 
+    [Mail].[Subject] AS [Subject], 
+    [Mail].[Body] AS [Body]
+    FROM [dbo].[Mail] AS [Mail]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_aspnet_Applications" EntityType="Self.vw_aspnet_Applications" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_aspnet_Applications].[ApplicationName] AS [ApplicationName], 
@@ -976,6 +999,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Name="IdVol" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Vols" Relationship="Self.FK_Reservations_Reservations" FromRole="Reservations" ToRole="Vols" />
           <Property Name="UserMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Validation" Type="Boolean" />
         </EntityType>
         <EntityType Name="Vols">
           <Key>
@@ -991,6 +1015,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Name="HeureDepart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HeureArrivee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Reservations" FromRole="Vols" ToRole="Reservations" />
+          <Property Name="Passagers" Type="Int32" />
         </EntityType>
         <Association Name="FK_Reservations_Reservations">
           <End Role="Vols" Type="Self.Vols" Multiplicity="1" />
@@ -1407,6 +1432,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
             <Parameter Name="ExceptionType" Mode="In" Type="String" />
             <Parameter Name="Details" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Mail" EntityType="FlyAwayDataModel.Mail" />
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -1843,6 +1869,17 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Type="String" Name="Column1" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
         </ComplexType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="From" />
+            <PropertyRef Name="To" />
+            <PropertyRef Name="Body" />
+          </Key>
+          <Property Name="From" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1862,6 +1899,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <EntitySetMapping Name="Reservations">
             <EntityTypeMapping TypeName="FlyAwayDataModel.Reservations">
               <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="Validation" ColumnName="Validation" />
                 <ScalarProperty Name="UserMail" ColumnName="UserMail" />
                 <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
                 <ScalarProperty Name="DateReservation" ColumnName="DateReservation" />
@@ -1873,6 +1911,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <EntitySetMapping Name="Vols">
             <EntityTypeMapping TypeName="FlyAwayDataModel.Vols">
               <MappingFragment StoreEntitySet="Vols">
+                <ScalarProperty Name="Passagers" ColumnName="Passagers" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Depart" ColumnName="Depart" />
                 <ScalarProperty Name="Arrivee" ColumnName="Arrivee" />
@@ -2257,6 +2296,16 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="aspnet_WebEvent_LogEvent" FunctionName="FlyAwayDataModel.Store.aspnet_WebEvent_LogEvent" />
+          <EntitySetMapping Name="Mail">
+            <EntityTypeMapping TypeName="FlyAwayDataModel.Mail">
+              <MappingFragment StoreEntitySet="Mail">
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

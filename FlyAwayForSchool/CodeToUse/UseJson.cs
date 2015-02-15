@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Data;
 using System.Net;
 using System.Xml.Linq;
+using System.Net.Mail;
 
 namespace FlyAwayForSchool.CodeToUse
 {
@@ -136,6 +137,26 @@ namespace FlyAwayForSchool.CodeToUse
               .Element("duration")
               .Element("value");
             return Int32.Parse(duration);
+        }
+
+        public void SendMail(Reservations reservation)
+        {
+            MailMessage mail = new MailMessage();
+            mail.To.Add(reservation.UserMail);
+            mail.From = new MailAddress("contacteasyflight@gmail.com");
+            mail.Subject = "Validation de Réservation sur Easy Flight";
+            string Body = "Bonjour, \n Votre réservation a bien été pris en compte. N'oubliez pas de vous acquitter des frais de voyage. \n Cordialement, \n Le service Client ";
+            mail.Body = Body;
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 25;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new System.Net.NetworkCredential
+            (mail.From.ToString(), "mamadoudavid");// Enter seders User name and password
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
 
     }
