@@ -49,7 +49,8 @@
                 @Html.DisplayFor(moditem => item.HeureArrivee)
             </td>
             <td>
-                @Html.ActionLink("DetailsResultat", "DetailsResultat", new { id = item.Id })
+                @Html.ActionLink("DetailsResultat", "DetailsResultat", new { id = item.Id })  %
+                @Html.ActionLink("Reserver", "ReserverVol", new { id =item.Id })
             </td>
         </tr>
     }

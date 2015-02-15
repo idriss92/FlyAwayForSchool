@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace FlyAwayForSchool.Controllers
 {
+    [Custom.CustomAuthorize]
     public class ReservationsController : Controller
     {
         private FlyAwayDataEntities db = new FlyAwayDataEntities();

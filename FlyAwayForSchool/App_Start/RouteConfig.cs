@@ -14,6 +14,12 @@ namespace FlyAwayForSchool
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Reservation", // Route name
+                url: "{controller}/{action}/{id}", // URL 
+                defaults : new { controller = "Recherche", action = "Index" } // Parameter defaults
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

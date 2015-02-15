@@ -103,6 +103,8 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -449,6 +451,7 @@
     <Content Include="Views\Recherche\Index.cshtml" />
     <Content Include="Views\Recherche\Resultat.cshtml" />
     <Content Include="Views\Recherche\DetailsResultat.cshtml" />
+    <Content Include="Views\Recherche\ReserverVol.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

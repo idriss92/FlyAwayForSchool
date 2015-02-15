@@ -12,25 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Depart)
+            @Html.DisplayName("Id Reservation")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Arrivee)
+            @Html.DisplayName("Date Reservation")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartHeure)
+            @Html.DisplayName("Tarif (*€)")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ArriveeHeure)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Distance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Prix)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NombreAdultes)
+            @Html.DisplayName("Id Vol")
         </th>
         <th></th>
     </tr>
@@ -39,30 +30,22 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Depart)
+                @Html.DisplayFor(modelItem => item.IdReservation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Arrivee)
+                @Html.DisplayFor(modelItem => item.DateReservation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DepartHeure)
+                @Html.DisplayFor(modelItem => item.TarifReservation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ArriveeHeure)
+                @Html.DisplayFor(modelItem => item.IdVol)
             </td>
+ 
             <td>
-                @Html.DisplayFor(modelItem => item.Distance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prix)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreAdultes)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdVol }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdReservation })
             </td>
         </tr>
     }

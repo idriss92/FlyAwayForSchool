@@ -80,5 +80,35 @@ namespace FlyAwayForSchool.Controllers
             }
             return View(vol);
         }
+
+
+        // Post : RechercheVol/Reserver/5
+        public ActionResult ReserverVol(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Vols reserver = db.Vols.Find(id);
+            Reservations official = new Reservations();
+            if (reserver == null)
+            {
+                return HttpNotFound();
+            }
+
+            official.DateReservation = DateTime.Now;
+            official.IdVol = reserver.Id;
+            official.TarifReservation = reserver.Prix;
+            official.Vols = reserver;
+
+            db.Reservations.Add(official);
+            db.SaveChanges();
+            //return RedirectToRoute("Reservation");
+
+            return View("Index");
+
+            
+        }
     }
 }
