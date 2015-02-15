@@ -153,6 +153,7 @@
           <Property Name="DateReservation" Type="datetime" Nullable="false" />
           <Property Name="TarifReservation" Type="int" Nullable="false" />
           <Property Name="IdVol" Type="int" Nullable="false" />
+          <Property Name="UserMail" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Vols">
           <Key>
@@ -163,8 +164,8 @@
           <Property Name="Arrivee" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateDepart" Type="date" Nullable="false" />
           <Property Name="DateArrivee" Type="date" Nullable="false" />
-          <Property Name="Distance" Type="int" Nullable="false" />
-          <Property Name="Prix" Type="int" Nullable="false" />
+          <Property Name="Distance" Type="int" />
+          <Property Name="Prix" Type="int" />
           <Property Name="HeureDepart" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="HeureArrivee" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -974,6 +975,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Name="TarifReservation" Type="Int32" Nullable="false" />
           <Property Name="IdVol" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Vols" Relationship="Self.FK_Reservations_Reservations" FromRole="Reservations" ToRole="Vols" />
+          <Property Name="UserMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Vols">
           <Key>
@@ -984,8 +986,8 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Name="Arrivee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateDepart" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateArrivee" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Distance" Type="Int32" Nullable="false" />
-          <Property Name="Prix" Type="Int32" Nullable="false" />
+          <Property Name="Distance" Type="Int32" />
+          <Property Name="Prix" Type="Int32" />
           <Property Name="HeureDepart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HeureArrivee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Reservations" FromRole="Vols" ToRole="Reservations" />
@@ -1075,7 +1077,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
           <FunctionImport Name="aspnet_AnyDataInTables" ReturnType="Collection(String)">
-            <Parameter Name="TablesToCheck" Mode="In" Type="Int32" />
+          <Parameter Name="TablesToCheck" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="aspnet_Applications_CreateApplication">
             <Parameter Name="ApplicationName" Mode="In" Type="String" />
@@ -1330,17 +1332,17 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
             <Parameter Name="DeleteOnlyIfRoleIsEmpty" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="aspnet_Roles_GetAllRoles" ReturnType="Collection(String)">
-            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+          <Parameter Name="ApplicationName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="aspnet_Roles_RoleExists">
             <Parameter Name="ApplicationName" Mode="In" Type="String" />
             <Parameter Name="RoleName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="aspnet_Setup_RemoveAllRoleMembers">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="aspnet_Setup_RestorePermissions">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="aspnet_UnRegisterSchemaVersion">
             <Parameter Name="Feature" Mode="In" Type="String" />
@@ -1860,6 +1862,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <EntitySetMapping Name="Reservations">
             <EntityTypeMapping TypeName="FlyAwayDataModel.Reservations">
               <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="UserMail" ColumnName="UserMail" />
                 <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
                 <ScalarProperty Name="DateReservation" ColumnName="DateReservation" />
                 <ScalarProperty Name="TarifReservation" ColumnName="TarifReservation" />

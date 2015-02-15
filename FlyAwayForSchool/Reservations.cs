@@ -18,6 +18,7 @@ namespace FlyAwayForSchool
         public System.DateTime DateReservation { get; set; }
         public int TarifReservation { get; set; }
         public int IdVol { get; set; }
+        public string UserMail { get; set; }
     
         public virtual Vols Vols { get; set; }
     }

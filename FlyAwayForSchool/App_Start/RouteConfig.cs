@@ -16,7 +16,7 @@ namespace FlyAwayForSchool
             routes.MapRoute(
                 "Reservation", // Route name
                 url: "{controller}/{action}/{id}", // URL 
-                defaults : new { controller = "Recherche", action = "Index" } // Parameter defaults
+                defaults : new { controller = "Home", action = "Index" } // Parameter defaults
                 );
 
             routes.MapRoute(

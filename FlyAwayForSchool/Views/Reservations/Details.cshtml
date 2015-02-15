@@ -1,4 +1,4 @@
-﻿@model FlyAwayForSchool.Reservations
+﻿@model FlyAwayForSchool.Vols
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Reservation</h4>
+    <h4>Vols</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,19 +27,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DepartHeure)
+            @Html.DisplayNameFor(model => model.DateDepart)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DepartHeure)
+            @Html.DisplayFor(model => model.DateDepart)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ArriveeHeure)
+            @Html.DisplayNameFor(model => model.DateArrivee)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ArriveeHeure)
+            @Html.DisplayFor(model => model.DateArrivee)
         </dd>
 
         <dt>
@@ -59,11 +59,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NombreAdultes)
+            @Html.DisplayNameFor(model => model.HeureDepart)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NombreAdultes)
+            @Html.DisplayFor(model => model.HeureDepart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureArrivee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureArrivee)
         </dd>
 
     </dl>

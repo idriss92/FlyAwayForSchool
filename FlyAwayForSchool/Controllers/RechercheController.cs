@@ -4,9 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace FlyAwayForSchool.Controllers
 {
+
+    [Custom.CustomAuthorize]
     public class RechercheController : Controller
     {
         CodeToUse.UseJson ap = new CodeToUse.UseJson();
@@ -101,12 +104,10 @@ namespace FlyAwayForSchool.Controllers
             official.IdVol = reserver.Id;
             official.TarifReservation = reserver.Prix;
             official.Vols = reserver;
-
+            official.UserMail = User.Identity.GetUserName();
             db.Reservations.Add(official);
             db.SaveChanges();
-            //return RedirectToRoute("Reservation");
-
-            return View("Index");
+            return View();
 
             
         }

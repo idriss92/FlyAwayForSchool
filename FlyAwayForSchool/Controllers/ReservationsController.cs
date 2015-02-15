@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace FlyAwayForSchool.Controllers
 {
-    [Custom.CustomAuthorize]
+    [Custom.CustomAuthorize(Users="idriss2004@hotmail.com")]
     public class ReservationsController : Controller
     {
         private FlyAwayDataEntities db = new FlyAwayDataEntities();
@@ -27,11 +27,19 @@ namespace FlyAwayForSchool.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Reservations reservation = db.Reservations.Find(id);
+            Vols volReserver = new Vols();
             if (reservation == null)
             {
                 return HttpNotFound();
             }
-            return View(reservation);
+            else{
+                volReserver = db.Vols.Find(reservation.IdVol);
+                if (volReserver == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+            return View(volReserver);
         }
 
         // GET: Reservations/Create

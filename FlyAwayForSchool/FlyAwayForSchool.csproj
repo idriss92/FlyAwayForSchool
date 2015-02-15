@@ -440,9 +440,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\Create.cshtml" />
-    <Content Include="Views\Reservations\Details.cshtml" />
     <Content Include="Views\Reservations\Edit.cshtml" />
-    <Content Include="Views\Reservations\Delete.cshtml" />
     <Content Include="Views\Vol\Create.cshtml" />
     <Content Include="Views\Vol\Delete.cshtml" />
     <Content Include="Views\Vol\Details.cshtml" />
@@ -452,6 +450,8 @@
     <Content Include="Views\Recherche\Resultat.cshtml" />
     <Content Include="Views\Recherche\DetailsResultat.cshtml" />
     <Content Include="Views\Recherche\ReserverVol.cshtml" />
+    <Content Include="Views\Reservations\Details.cshtml" />
+    <Content Include="Views\Reservations\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
