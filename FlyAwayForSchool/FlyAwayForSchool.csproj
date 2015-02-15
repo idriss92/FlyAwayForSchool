@@ -217,6 +217,7 @@
     <Compile Include="Controllers\RechercheController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\VolController.cs" />
+    <Compile Include="Custom\CustomAuthorize.cs" />
     <Compile Include="FlyAwayForSchoolModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

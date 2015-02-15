@@ -1,4 +1,5 @@
 ﻿using FlyAwayForSchool.CodeToUse;
+using FlyAwayForSchool.Custom;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace FlyAwayForSchool.Controllers
 {
+    [CustomAuthorize(Users="idriss2004@hotmail.com")]
     public class VolController : Controller
     {
         private FlyAwayDataEntities db = new FlyAwayDataEntities();
@@ -58,7 +60,7 @@ namespace FlyAwayForSchool.Controllers
                 copies.DateDepart = vol.DateDepart;
                 copies.DateArrivee = vol.DateArrivee;
                 copies.Distance = calculate.CalculDistance(vol.Depart, vol.Arrivee);
-                copies.Prix = calculate.CalculDuree(vol.Depart, vol.Arrivee);
+                copies.Prix = calculate.CalculDuree(vol.Depart, vol.Arrivee) /105;
                 copies.HeureArrivee = vol.HeureArrivee;
                 copies.HeureDepart = vol.HeureDepart;
                 db.Vols.Add(copies);
