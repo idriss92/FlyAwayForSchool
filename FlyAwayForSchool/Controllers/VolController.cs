@@ -50,6 +50,7 @@ namespace FlyAwayForSchool.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Vols vol)
         {
+            
             Vols copies = new Vols();
             if (ModelState.IsValid)
             {
@@ -60,9 +61,9 @@ namespace FlyAwayForSchool.Controllers
                 copies.DateDepart = vol.DateDepart;
                 copies.DateArrivee = vol.DateArrivee;
                 copies.Distance = calculate.CalculDistance(vol.Depart, vol.Arrivee);
-                copies.Prix = calculate.CalculDuree(vol.Depart, vol.Arrivee) /105;
-                copies.HeureArrivee = vol.HeureArrivee;
-                copies.HeureDepart = vol.HeureDepart;
+                copies.Prix = vol.Prix + (vol.Prix * Int16.Parse(db.Politique.ToList().Single(c => c.NomPolitique == vol.PolitiqueName).TarificationPolitique))/100;
+                copies.HeureArrivee = calculate.ConvertTimeAddTime(vol.HeureDepart, calculate.CalculDuree(vol.Depart, vol.Arrivee));
+                copies.HeureDepart = calculate.ConvertTime(vol.HeureArrivee);
                 copies.Passagers = vol.Passagers;
                 db.Vols.Add(copies);
                 db.SaveChanges();
@@ -140,5 +141,7 @@ namespace FlyAwayForSchool.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

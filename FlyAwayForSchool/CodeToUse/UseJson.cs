@@ -13,6 +13,7 @@ using System.Data;
 using System.Net;
 using System.Xml.Linq;
 using System.Net.Mail;
+using System.Text;
 
 namespace FlyAwayForSchool.CodeToUse
 {
@@ -109,6 +110,18 @@ namespace FlyAwayForSchool.CodeToUse
 
         }
 
+        public List<SelectListItem> RetournePolitique()
+        {
+            List<SelectListItem> listSelect = new List<SelectListItem>();
+
+            foreach (var aero in entities.Politique)
+            {
+                listSelect.Add(new SelectListItem { Text = aero.NomPolitique });
+
+            }
+
+            return listSelect;
+        }
 
         public int CalculDistance(string depart, string arrivee)
         {
@@ -142,9 +155,12 @@ namespace FlyAwayForSchool.CodeToUse
         public void SendMail(Reservations reservation)
         {
             MailMessage mail = new MailMessage();
+            
             mail.To.Add(reservation.UserMail);
+            StringBuilder contentMail = new StringBuilder("Bonjour ", reservation.UserMail);
             mail.From = new MailAddress("contacteasyflight@gmail.com");
             mail.Subject = "Validation de Réservation sur Easy Flight";
+            contentMail.Append();
             string Body = "Bonjour, \n Votre réservation a bien été pris en compte. N'oubliez pas de vous acquitter des frais de voyage. \n Cordialement, \n Le service Client ";
             mail.Body = Body;
             mail.IsBodyHtml = true;
@@ -158,6 +174,23 @@ namespace FlyAwayForSchool.CodeToUse
             smtp.EnableSsl = true;
             smtp.Send(mail);
         }
+
+        public  String ConvertTime(String heure)
+        {
+            string[] tableauHeure = heure.Split(':');
+            DateTime useToGetHour = new DateTime(1, 1, 1, int.Parse(tableauHeure[0]),int.Parse(tableauHeure[1]), 0);
+            return useToGetHour.TimeOfDay.ToString();
+        }
+
+        public String ConvertTimeAddTime(String heure, double seconde)
+        {
+            string[] tableauHeure = heure.Split(':');
+            DateTime useToGetHour = new DateTime(1, 1, 1, int.Parse(tableauHeure[0]), int.Parse(tableauHeure[1]), 0);
+            useToGetHour = useToGetHour.AddSeconds(seconde);
+            return useToGetHour.TimeOfDay.ToString();
+        }
+
+        
 
     }
 }

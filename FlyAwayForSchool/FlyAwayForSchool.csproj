@@ -217,6 +217,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\PolitiqueController.cs" />
     <Compile Include="Controllers\RechercheController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\VolController.cs" />
@@ -247,6 +248,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\VolModel.cs" />
+    <Compile Include="Politique.cs">
+      <DependentUpon>FlyAwayForSchoolModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservations.cs">
       <DependentUpon>FlyAwayForSchoolModel.tt</DependentUpon>
@@ -458,6 +462,10 @@
     <Content Include="Views\Mail\Index.cshtml" />
     <Content Include="Views\Reservations\ValiderReservation.cshtml" />
     <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\Politique\Index.cshtml" />
+    <Content Include="Views\Politique\Details.cshtml" />
+    <Content Include="Views\Politique\Create.cshtml" />
+    <Content Include="Views\Politique\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

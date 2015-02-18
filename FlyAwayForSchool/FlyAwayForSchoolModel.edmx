@@ -158,6 +158,14 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.Mail' n'a pas de clé primaire
           <Property Name="Subject" Type="nvarchar" MaxLength="50" />
           <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="Politique">
+          <Key>
+            <PropertyRef Name="IdPolitique" />
+          </Key>
+          <Property Name="IdPolitique" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomPolitique" Type="nvarchar" MaxLength="50" />
+          <Property Name="TarificationPolitique" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Reservations">
           <Key>
             <PropertyRef Name="IdReservation" />
@@ -183,6 +191,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.Mail' n'a pas de clé primaire
           <Property Name="HeureDepart" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="HeureArrivee" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Passagers" Type="int" />
+          <Property Name="PolitiqueName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_Applications' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -826,6 +835,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Politique" EntityType="Self.Politique" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vols" EntityType="Self.Vols" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mail" EntityType="Self.Mail" store:Type="Tables" store:Schema="dbo">
@@ -1016,6 +1026,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Name="HeureArrivee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Reservations" FromRole="Vols" ToRole="Reservations" />
           <Property Name="Passagers" Type="Int32" />
+          <Property Name="PolitiqueName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Reservations_Reservations">
           <End Role="Vols" Type="Self.Vols" Multiplicity="1" />
@@ -1433,6 +1444,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
             <Parameter Name="Details" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Mail" EntityType="FlyAwayDataModel.Mail" />
+          <EntitySet Name="Politique" EntityType="FlyAwayDataModel.Politique" />
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -1880,6 +1892,14 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Politique">
+          <Key>
+            <PropertyRef Name="IdPolitique" />
+          </Key>
+          <Property Name="IdPolitique" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomPolitique" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TarificationPolitique" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1911,6 +1931,7 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
           <EntitySetMapping Name="Vols">
             <EntityTypeMapping TypeName="FlyAwayDataModel.Vols">
               <MappingFragment StoreEntitySet="Vols">
+                <ScalarProperty Name="PolitiqueName" ColumnName="PolitiqueName" />
                 <ScalarProperty Name="Passagers" ColumnName="Passagers" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Depart" ColumnName="Depart" />
@@ -2303,6 +2324,15 @@ avertissement 6002: La table/vue 'FlyAwayData.dbo.vw_aspnet_WebPartState_User' n
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="To" ColumnName="To" />
                 <ScalarProperty Name="From" ColumnName="From" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Politique">
+            <EntityTypeMapping TypeName="FlyAwayDataModel.Politique">
+              <MappingFragment StoreEntitySet="Politique">
+                <ScalarProperty Name="TarificationPolitique" ColumnName="TarificationPolitique" />
+                <ScalarProperty Name="NomPolitique" ColumnName="NomPolitique" />
+                <ScalarProperty Name="IdPolitique" ColumnName="IdPolitique" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

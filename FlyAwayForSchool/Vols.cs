@@ -29,6 +29,7 @@ namespace FlyAwayForSchool
         public string HeureDepart { get; set; }
         public string HeureArrivee { get; set; }
         public Nullable<int> Passagers { get; set; }
+        public string PolitiqueName { get; set; }
     
         public virtual ICollection<Reservations> Reservations { get; set; }
     }
