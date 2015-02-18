@@ -155,14 +155,18 @@ namespace FlyAwayForSchool.CodeToUse
         public void SendMail(Reservations reservation)
         {
             MailMessage mail = new MailMessage();
+            FlyAwayDataEntities entities = new FlyAwayDataEntities();
             
             mail.To.Add(reservation.UserMail);
-            StringBuilder contentMail = new StringBuilder("Bonjour ", reservation.UserMail);
+            StringBuilder contentMail = new StringBuilder("Bonjour "+ reservation.UserMail);
             mail.From = new MailAddress("contacteasyflight@gmail.com");
             mail.Subject = "Validation de Réservation sur Easy Flight";
-            contentMail.Append();
-            string Body = "Bonjour, \n Votre réservation a bien été pris en compte. N'oubliez pas de vous acquitter des frais de voyage. \n Cordialement, \n Le service Client ";
-            mail.Body = Body;
+            contentMail.AppendFormat("Votre réservation pour le vol {0} à {1} , a été pris en compte", entities.Vols.ToList().Single(c => c.Id == reservation.IdVol).Depart, entities.Vols.ToList().Single(c => c.Id == reservation.IdVol).Arrivee);
+            contentMail.AppendFormat("N'oubliez pas de vous acquitter des frais de voyages s'élevant à {0}", entities.Vols.ToList().Single(c => c.Id == reservation.IdVol).Prix);
+            contentMail.AppendLine("Cordialement,");
+            contentMail.AppendLine("Le Service Client");
+            //string Body = "Bonjour, \n Votre réservation . N'oubliez pas de vous acquitter des frais de voyage. \n Cordialement, \n Le service Client ";
+            mail.Body = contentMail.ToString(); ;
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
 

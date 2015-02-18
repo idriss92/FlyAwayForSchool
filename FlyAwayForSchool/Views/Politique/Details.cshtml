@@ -1,0 +1,42 @@
+﻿@model FlyAwayForSchool.Politique
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Politique</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPolitique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdPolitique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomPolitique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomPolitique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TarificationPolitique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TarificationPolitique)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.IdPolitique}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
