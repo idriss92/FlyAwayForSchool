@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-condensed table-hover table-striped">
     <tr>
         <th>
             @Html.DisplayName("Départ")
@@ -34,17 +34,17 @@
             @Html.DisplayName("Passagers")
         </th>
         <th>
-            @Html.DisplayName("H Départ")
+            @Html.DisplayName("Heure Départ")
         </th>
         <th>
-            @Html.DisplayName("H Arrivée")
+            @Html.DisplayName("Heure Arrivée")
         </th>
-        <th></th>
+        <th>@Html.DisplayName("Actions")</th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="info">
             <td>
                 @Html.DisplayFor(modelItem => item.Depart)
             </td>

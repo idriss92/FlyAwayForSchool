@@ -110,7 +110,7 @@ namespace FlyAwayForSchool.Controllers
             db.Entry(reserver).State = EntityState.Modified;
             db.Reservations.Add(official);
             db.SaveChanges();
-            return RedirectToAction("Index", "Recherche");
+            return RedirectToAction("Index", "Home");
 
             
         }

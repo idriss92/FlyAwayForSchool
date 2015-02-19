@@ -9,20 +9,16 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-condensed table-hover table-striped">
     <tr>
-        <th>
-            @Html.DisplayName("Id Reservation")
-        </th>
+
         <th>
             @Html.DisplayName("Date Reservation")
         </th>
         <th>
             @Html.DisplayName("Tarif (en €)")
         </th>
-        <th>
-            @Html.DisplayName("Id Vol")
-        </th>
+
         <th>
             @Html.DisplayName("Client mail")
         </th>
@@ -34,27 +30,23 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdReservation)
-            </td>
+        <tr class="info">
+
             <td>
                 @Html.DisplayFor(modelItem => item.DateReservation)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TarifReservation)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdVol)
-            </td>
+
 
             <td>
-                @Html.DisplayFor(modelItem =>item.UserMail)
+                @Html.DisplayFor(modelItem => item.UserMail)
             </td>
             <td>
-                @Html.DisplayFor(modelItem=>item.Validation)
+                @Html.DisplayFor(modelItem => item.Validation)
             </td>
- 
+
             <td>
                 @Html.ActionLink("Validation", "ValiderReservation", new { id = item.IdReservation }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |

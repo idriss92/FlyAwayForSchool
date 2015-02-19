@@ -16,10 +16,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>59800</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -303,7 +303,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\datepicker3.css" />
+    <Content Include="Content\images\Caribbean-Resort.jpg" />
+    <Content Include="Content\images\The-Acropolis-Selinunte-Greek-ruins-Sicily-italy-485x728.jpg" />
+    <Content Include="Content\images\Vadstena-Castle-Sweden-485x728.jpg" />
+    <Content Include="Content\images\Vadstena-Castle-Sweden-960x1280.jpg" />
+    <Content Include="Content\images\Virgin-Islands.jpg" />
     <Content Include="Content\jquery.timepicker.css" />
+    <Content Include="Content\images\Le-Mont-Saint-Michel-France-europe.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

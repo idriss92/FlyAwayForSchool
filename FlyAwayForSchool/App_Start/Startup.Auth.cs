@@ -52,9 +52,11 @@ namespace FlyAwayForSchool
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            //    ClientId = "376878284143-m4fgljbel9fdajtlk3t0u94n5af9undt.apps.googleusercontent.com",
+            //    ClientSecret = "RG8717p4KAAkC6E_5bl_GYFM"
             //});
+
+            // http://www.codeproject.com/Articles/870870/Using-Paypal-Rest-API-with-ASP-NET-MVC
         }
     }
 }
