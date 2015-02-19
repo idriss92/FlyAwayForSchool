@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<FlyAwayForSchool.Reservations>
-
+@{
+    int b = 0;
+}
 @{
     ViewBag.Title = "Index";
+    
 }
+
 
 <h2>Index</h2>
 
@@ -25,35 +29,93 @@
         <th>
             @Html.DisplayName("Reservation Validée")
         </th>
-        <th></th>
+        <th>@Html.DisplayName("Actions")</th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr class="info">
+        if (b % 2 == 0)
+        {
+            <tr class="info">
 
-            <td>
-                @Html.DisplayFor(modelItem => item.DateReservation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TarifReservation)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateReservation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarifReservation)
+                </td>
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.UserMail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Validation)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Validation)
+                </td>
 
-            <td>
-                @Html.ActionLink("Validation", "ValiderReservation", new { id = item.IdReservation }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdVol }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdReservation })
-            </td>
-        </tr>
+                <td>
+                    @Html.ActionLink("Validation", "ValiderReservation", new { id = item.IdReservation }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdVol }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdReservation })
+                </td>
+            </tr>
+        }
+        else if(b%3==0)
+        {
+            <tr class="success">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateReservation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarifReservation)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Validation)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Validation", "ValiderReservation", new { id = item.IdReservation }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdVol }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdReservation })
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr class="danger">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateReservation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarifReservation)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Validation)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Validation", "ValiderReservation", new { id = item.IdReservation }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdReservation }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdVol }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdReservation })
+                </td>
+            </tr>
+        }
+        b++;
     }
 
 </table>

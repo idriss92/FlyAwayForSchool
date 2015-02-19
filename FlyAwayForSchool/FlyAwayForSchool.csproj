@@ -304,6 +304,9 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\datepicker3.css" />
     <Content Include="Content\images\Caribbean-Resort.jpg" />
+    <Content Include="Content\images\davidFaces.jpg" />
+    <Content Include="Content\images\idrissFace.jpg" />
+    <Content Include="Content\images\mamadouFaces.jpg" />
     <Content Include="Content\images\The-Acropolis-Selinunte-Greek-ruins-Sicily-italy-485x728.jpg" />
     <Content Include="Content\images\Vadstena-Castle-Sweden-485x728.jpg" />
     <Content Include="Content\images\Vadstena-Castle-Sweden-960x1280.jpg" />
